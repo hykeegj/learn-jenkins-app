@@ -6,14 +6,19 @@ pipeline {
             agent {
                 docker {
                     image 'node:18-alpine'
+                    args '--network host --dns=127.0.0.11'
                     reuseNode true
                 }
             }
 
             steps {
                 sh '''
-                    cat /etc/resolv.conf
-                    npm ping --registry=https://registry.npmjs.org/ --fetch-retries=0 --fetch-timeout=15000
+                    ls -al
+                    node --version
+                    npm --version
+                    npm ci
+                    npm run build
+                    ls -al
                 '''
             }
         }
