@@ -12,14 +12,8 @@ pipeline {
 
             steps {
                 sh '''
-                    ls -al
-                    node --version
-                    npm --version
-                    npm ci
-                    ls -al /home/node/.npm/_logs
-                    cat /home/node/.npm/_logs/*.log
-                    npm run build
-                    ls -al
+                    cat /etc/resolv.conf
+                    npm ping --registry=https://registry.npmjs.org/ --fetch-retries=0 --fetch-timeout=15000
                 '''
             }
         }
