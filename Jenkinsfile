@@ -16,6 +16,8 @@ pipeline {
                     node --version
                     npm --version
                     npm ci
+                    ls -al /home/node/.npm/_logs
+                    cat /home/node/.npm/_logs/*.log
                     npm run build
                     ls -al
                 '''
